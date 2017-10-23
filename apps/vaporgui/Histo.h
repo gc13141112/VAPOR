@@ -28,7 +28,7 @@ class Histo{
 public:
 	Histo(int numberBins, float mnData, float mxData);
 
-#ifdef	DEAD
+#if 0
 	//Special constructor for unsigned char data:
 	//
 	Histo(const VAPoR::StructuredGrid *rg, const double exts[6], const float range[2]);
@@ -43,6 +43,7 @@ public:
 	int getMaxBinSize() {return _maxBinSize;}
 	float getMinData(){return _minData;}
 	float getMaxData(){return _maxData;}
+    void  printSelf();
 	
 private:
 	

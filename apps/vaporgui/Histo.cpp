@@ -30,7 +30,7 @@ Histo::Histo(int numberBins, float mnData, float mxData){
 	reset();
 }
 
-#ifdef	DEAD
+#if 0	
 Histo::Histo(const StructuredGrid *rg, const double exts[6], const float range[2]) {
 	_binArray = new int[256];
 	_minData = range[0];
@@ -68,7 +68,11 @@ Histo::Histo(const StructuredGrid *rg, const double exts[6], const float range[2
 #endif
 	
 Histo::~Histo(){
-	if (_binArray) delete [] _binArray;
+	if (_binArray) 
+    {
+        delete [] _binArray;
+        _binArray = NULL;
+    }
 }
 void Histo::reset(int newNumBins) {
 	if (newNumBins != -1) {
@@ -97,4 +101,10 @@ void Histo::addToBin(float val) {
 			_largestBin = intVal;
 		}
 	}
+}
+    
+void  Histo::printSelf()
+{
+    printf(" %d bins, %d is the largest with a size %d\n", _numBins, _largestBin, _maxBinSize );
+    printf(" The smallest and largest values are: %f, %f\n", _minData, _maxData );
 }
